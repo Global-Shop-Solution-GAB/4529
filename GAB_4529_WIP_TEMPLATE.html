@@ -1,0 +1,127 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>Shop Floor Screen</title>
+<link rel="stylesheet" type="text/css" href="GAB_4529_style.css" media="screen, print">
+<!-- jquery in below script is for reloading page when bottom is reached with auto scroll-->
+	<script type="text/javascript" src="jquery.min.js"></script>
+	<script type="text/javascript">
+		$(window).load( function() {
+			var iWidth = $(document).width()*0.055-getScrollBarWidth();
+			var iWidthSum = $(document).width()*0.055-getScrollBarWidth();
+			var iCellWidth = ($(document).width() - ($(document).width()*0.05-iWidth))/10;
+			var iCellWidthSum = ($(document).width() - ($(document).width()*0.05-iWidthSum))/3;
+        	
+			$(".Empty").css("width",(iWidth-getScrollBarWidth())+"px");
+			$(".Last").css("width",(iWidth+getScrollBarWidth())+"px");
+			$(".data-cell").css("width",iCellWidth+"px");
+			$(".red-cells").css("width",iCellWidth+"px");
+			$(".orange-cells").css("width",iCellWidth+"px");
+			$(".yellow-cells").css("width",iCellWidth+"px");
+			$(".mist-cells").css("width",iCellWidth+"px");
+			$(".blue-cells").css("width",iCellWidth+"px");
+			$(".gray-cells").css("width",iCellWidth+"px");
+			$(".cyan-cells").css("width",iCellWidth+"px");
+			$(".magenta-cells").css("width",iCellWidth+"px");
+			$( ".TFtable tr td:nth-last-child(1)" ).css("width",iWidth+"px");
+			
+			$(".Empty-Sum").css("width",(iWidthSum-getScrollBarWidth())+"px");
+			$(".Last-Sum").css("width",(iWidthSum+getScrollBarWidth())+"px");
+			$(".data-cell-Sum").css("width",iCellWidthSum+"px");
+			$( ".SumTable tr td:nth-last-child(1)" ).css("width",iWidthSum+"px");
+			
+			pageScroll();
+		});
+         
+		function getScrollBarWidth () {
+			var inner = document.createElement('p');
+			inner.style.width = "100%";
+			inner.style.height = "200px";
+		
+			var outer = document.createElement('div');
+			outer.style.position = "absolute";
+			outer.style.top = "0px";
+			outer.style.left = "0px";
+			outer.style.visibility = "hidden";
+			outer.style.width = "200px";
+			outer.style.height = "150px";
+			outer.style.overflow = "hidden";
+			outer.appendChild (inner);
+		
+			document.body.appendChild (outer);
+			var w1 = inner.offsetWidth;
+			outer.style.overflow = 'scroll';
+			var w2 = inner.offsetWidth;
+			if (w1 == w2) w2 = outer.clientWidth;
+		
+			document.body.removeChild (outer);
+		
+			return (w1 - w2);
+		};
+		
+	function pageScroll() {
+			window.setInterval(function() {
+			var elem = document.getElementById('MainDiv');
+			var oldTop = elem.scrollTop;
+  				
+			elem.scrollTop = elem.scrollTop+5;
+  				
+			if(elem.scrollTop==oldTop)
+				elem.scrollTop=0;
+			}, 100);
+		}
+         //setTimeout(function () { location.reload(1); }, 600000);
+		 		//this section of JS will sleep for a set # of minutes, then redirect to next page, sleep time and redirect path controlled in GAB
+		//sleep and redirect
+		setTimeout(function (){
+			location.reload(1);		
+		}, 120000);
+    </script>
+</head>
+
+<body>
+	<!-- Top table with title and logos -->
+	<table class="TopTable"><tbody>
+		<tr>
+			<td rowspan="2"><img src="UnitedMachinists.PNG" alt=""/></td>
+			<td rowspan="2" class="FF_hdr">Shop Floor Screen</td>
+			<td><img class="imgGSSLogo" src="globshopnew2017.png" /> </td>
+		</tr>
+		<tr>
+			<td class="customer_hdr">
+				<p class="customer_hdr_LINK"> </p>
+				<p class="topics_list"> </p>
+			</td>
+		</tr>
+    </tbody></table>
+	
+	<!-- Header table for scrolling data -->
+
+	
+	<!-- Main data -->
+	<div class="MainDiv" id="MainDiv">
+				<!-- New td added as padding at beginning and end of each row.
+					All other td elements should be class 'data-cell' -->
+				<!--<table class="TFtable" border="0"><tbody>-->   
+			<!--DATA TABLE-->
+			#table
+	</div>
+	
+<script>
+$(function(){
+  $("tr").each(function(){
+    var col_val1 = $(this).find("td:eq(6)").text();
+    var col_val2 = $(this).find("td:eq(7)").text();
+	var iNum1 = parseFloat(col_val1);
+	var iNum2 = parseFloat(col_val2);
+    	if (iNum1 < iNum2){
+      		$(this).find("td:eq(7)").css("background-color","#ff6666");  //make cells red//
+    	}
+  });
+});
+
+</script>
+</body>
+</html>
